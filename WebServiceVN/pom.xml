@@ -68,7 +68,7 @@
     <dependency>
       <groupId>org.glassfish.jersey.containers</groupId>
       <artifactId>jersey-container-servlet-core</artifactId>
-      <version>3.0.4</version>
+      <version>3.1.0-M2</version>
     </dependency>
     <!-- bean validation -->
     <dependency>
@@ -79,7 +79,7 @@
     <dependency>
       <groupId>org.glassfish.jersey.inject</groupId>
       <artifactId>jersey-hk2</artifactId>
-      <version>3.0.4</version>
+      <version>3.1.0-M2</version>
     </dependency>
     <dependency>
       <groupId>org.glassfish.jersey.media</groupId>
@@ -89,6 +89,13 @@
     <dependency>
       <groupId>org.glassfish.jersey.media</groupId>
       <artifactId>jersey-media-jaxb</artifactId>
+      <version>3.1.0-M2</version>
+    </dependency>
+    <!--  using jersey-multipart for multipart file upload dependency on @FormInputParam that is required
+     añado por error 500 que me da ... nada sigue igual-->
+    <dependency>
+      <groupId>org.glassfish.jersey.media</groupId>
+      <artifactId>jersey-media-multipart</artifactId>
       <version>3.0.4</version>
     </dependency>
     <dependency>

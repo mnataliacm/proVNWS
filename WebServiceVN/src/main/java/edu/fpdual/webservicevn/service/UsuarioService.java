@@ -21,5 +21,16 @@ public Set<Usuario> todosUsuarios() throws SQLException, ClassNotFoundException 
       return usuarioManager.todosUsuarios(con);
     }
 }
+  public Usuario buscaID(Integer id) throws SQLException, ClassNotFoundException {
+    try (Connection con = new Connector().getConnection()) {
+      return usuarioManager.buscaID(con, id);
+    }
+  }
+  public int nuevoUsuario(Usuario usuario) throws SQLException, ClassNotFoundException {
+    try (Connection con = new Connector().getConnection()) {
+      return usuarioManager.nuevoUsuario(con, usuario);
+    }
+  }
+
 
 }
