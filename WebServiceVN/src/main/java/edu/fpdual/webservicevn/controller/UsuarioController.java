@@ -1,7 +1,7 @@
 package edu.fpdual.webservicevn.controller;
 
-import edu.fpdual.proyectovn.model.dao.Usuario;
-import edu.fpdual.proyectovn.model.manager.implement.UsuarioManagerImpl;
+import edu.fpdual.webservicevn.model.dao.Usuario;
+import edu.fpdual.webservicevn.model.manager.implement.UsuarioManagerImpl;
 import edu.fpdual.webservicevn.service.UsuarioService;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -32,7 +32,7 @@ public class UsuarioController {
     try {
       int createdId = usuarioService.nuevoUsuario(usuario);
       if(createdId > 0){
-        return Response.status(201).entity(usuarioService.findById(createdId)).build();
+        return Response.status(201).entity(usuarioService.buscaId(createdId)).build();
       } else {
         return Response.status(500).entity("Internal Error During Creating The City").build();
       }

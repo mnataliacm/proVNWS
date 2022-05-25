@@ -1,6 +1,6 @@
 package edu.fpdual.webservicevn;
 
-import edu.fpdual.proyectovn.model.connector.Connector;
+import edu.fpdual.webservicevn.model.connector.Connector;
 
 import java.sql.Connection;
 import java.sql.SQLException;

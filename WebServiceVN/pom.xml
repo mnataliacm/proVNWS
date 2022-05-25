@@ -61,11 +61,6 @@
 
   <dependencies>
     <dependency>
-      <groupId>edu.fpdual.proyectovn</groupId>
-      <artifactId>VN</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
-    </dependency>
-    <dependency>
       <groupId>org.glassfish.jersey.containers</groupId>
       <artifactId>jersey-container-servlet-core</artifactId>
       <version>3.1.0-M2</version>
