@@ -12,7 +12,7 @@ import java.sql.SQLException;
 @Builder
 
 public class Usuario {
-  private int id;
+  private Integer id;
   private String nom;
   private String ape;
   private String pass;
