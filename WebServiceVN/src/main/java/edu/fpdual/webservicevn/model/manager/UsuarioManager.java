@@ -2,9 +2,6 @@ package edu.fpdual.webservicevn.model.manager;
 
 import edu.fpdual.webservicevn.model.dao.Usuario;
 
-import java.sql.Connection;
-import java.util.Set;
-
 
 public interface UsuarioManager extends Manager<Usuario, Integer>{
 
@@ -13,39 +10,48 @@ public interface UsuarioManager extends Manager<Usuario, Integer>{
    *
    * @param con conexión a BBDD
    * @return {@code Set} of {@code Usuario}
-   */
-  Set<Usuario> todos(Connection con);
+   *//*
+  Set<Usuario> todosUsuarios(Connection con);
 
-  /**
+  *//**
    * Comprobar si usuario existe
    * @param con conexión a BBDD
    * @param id ID del usuario a buscar
    * @return {@code Set} of {@code Usuario}
-   */
-  Usuario buscaID(Connection con, Integer id);
+   *//*
+  public boolean buscarID(Connection con, int id);
 
 
-  /**
+  *//**
    * Modifica datos de un usuario
    * @param con conexión a BBDD
-   * @param usuario parámetros recibidos
+   * @param nom nuevo/mismo nombre
+   * @param ape nuevo/mismo apellido
+   * @param email nuevo/mismo email
+   * @param pass nueva/mismo pass
+   * @param movil nuevo/mismo movil
    * @return {@code Set} of {@code Usuario}
-   */
-  int crear(Connection con, Usuario usuario);
+   *//*
+  public boolean nuevoUsuario(Connection con, String nom, String ape, String email, String pass, String movil);
 
-  /**
+  *//**
    * Modifica datos de un usuario
    * @param con conexión a BBDD
-   * @param usuario parámetros recibidos
+   * @param nom nuevo/mismo nombre
+   * @param ape nuevo/mismo apellido
+   * @param email nuevo/mismo email
+   * @param pass nueva/mismo pass
+   * @param movil nuevo/mismo movil
+   * @param id ID del usuario a modificar
    * @return {@code boolean} of {@code Usuario}
-   */
-
-  boolean modificar(Connection con, Usuario usuario);
-  /**
+   *//*
+  public boolean modificarUsuario(Connection con, String nom, String ape, String email, String pass, String movil, int id);
+  *//**
    * Borra un usuario
    * @param con conexión a BBDD
    * @param id ID del usuario a borrar
    * @return {@code Set} of {@code Usuario}
-   */
-  boolean borrar(Connection con, Integer id);
+   *//*
+  public boolean borraUsuario(Connection con, int id);
+*/
 }
