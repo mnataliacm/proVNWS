@@ -2,8 +2,6 @@ package edu.fpdual.webservicevn;
 
 import edu.fpdual.webservicevn.controller.UsuarioController;
 import edu.fpdual.webservicevn.model.dao.Usuario;
-import edu.fpdual.webservicevn.model.manager.implement.UsuarioManagerImpl;
-import edu.fpdual.webservicevn.service.UsuarioService;
 
 import java.sql.SQLException;
 
@@ -24,8 +22,9 @@ public class Main {
     System.out.println("Buscar usuario por id");
     System.out.println(new UsuarioService(new UsuarioManagerImpl()).buscaId(3));
     System.out.println("Nuevo usuario");*/
-    Usuario usuario = new Usuario(6, "lala", "lala", "lala", "lala@email.com", "123");
-    System.out.println(new UsuarioService(new UsuarioManagerImpl()).nuevoUsuario(usuario));
+   Usuario usuario = new Usuario(15, "lili", "lili", "lili", "lili@email.com", "123");
+    System.out.println(new UsuarioController().crear("lili", "lili", "lili", "lili@email.com", "123"));
+
 
 
   }

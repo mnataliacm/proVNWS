@@ -44,34 +44,12 @@ public class UsuarioManagerImpl implements UsuarioManager {
     }
   }
 
-  public boolean comparaEmail(Connection con, String email) {
-    try {
-      boolean existe = true;
-      PreparedStatement preparedStatement = con.prepareStatement("SELECT email FROM usuario WHERE email like ?");
-      preparedStatement.setString(1, email);
-      ResultSet resultSet = preparedStatement.executeQuery();
-      if (resultSet.next()) {
-        existe = false;
-      }
-      return existe;
-    } catch (Exception e) {
-      e.printStackTrace();
-      return true;
-    }
-  }
-
   @Override
   public boolean borrar(Connection con, Integer id) {
-    //prepare SQL statement
     String sql = "DELETE FROM usuario WHERE IDusu = ?";
-
-    // Create general statement
     try (PreparedStatement ps = con.prepareStatement(sql)) {
-      //Add Parameters
       ps.setInt(1, id);
-      // Queries the DB
       return ps.executeUpdate() > 0;
-
     } catch (SQLException e) {
       e.printStackTrace();
       return false;
@@ -79,7 +57,7 @@ public class UsuarioManagerImpl implements UsuarioManager {
   }
 
   @Override
-  public int crear(Connection con, Usuario usuario) {
+  public boolean crear(Connection con, Usuario usuario) {
     //prepare SQL statement
     String sql = "INSERT INTO usuario (NomUsu, ApeUsu, PassUsu, Email, Movil) values (?, ?, ?, ?, ?)";
 
@@ -93,18 +71,19 @@ public class UsuarioManagerImpl implements UsuarioManager {
       ps.setString(5, usuario.getMovil());
       // Queries the DB
       int affectedRows = ps.executeUpdate();
-      if(affectedRows<=0){
-        return 0;
+      if (affectedRows <= 0) {
+        return false;
       }
       ResultSet resultSet = ps.getGeneratedKeys();
       resultSet.beforeFirst();
       resultSet.next();
-      return resultSet.getInt(1);
+      return true;
     } catch (SQLException e) {
       e.printStackTrace();
-      return 0;
+      return false;
     }
   }
+
   @Override
   public boolean modificar(Connection con, Usuario usuario) {
     //prepare SQL statement
@@ -125,6 +104,27 @@ public class UsuarioManagerImpl implements UsuarioManager {
     } catch (SQLException e) {
       e.printStackTrace();
       return false;
+    }
+  }
+
+  public boolean crearUsuario(Connection con, Usuario usuario) {
+    //prepare SQL statement
+    String sql = "INSERT INTO usuario (NomUsu, ApeUsu, PassUsu, Email, Movil) values (?, ?, ?, ?, ?)";
+
+    // Create general statement
+    try (PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+      //Add Parameters
+      ps.setString(1, usuario.getNom());
+      ps.setString(2, usuario.getApe());
+      ps.setString(3, usuario.getPass());
+      ps.setString(4, usuario.getEmail());
+      ps.setString(5, usuario.getMovil());
+      boolean rowInsertada = ps.executeUpdate() > 0;
+      ps.close();
+      con.close();
+      return rowInsertada;
+    } catch (SQLException ex) {
+      throw new RuntimeException(ex);
     }
   }
 

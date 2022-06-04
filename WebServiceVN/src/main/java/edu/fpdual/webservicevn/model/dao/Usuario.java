@@ -1,5 +1,6 @@
 package edu.fpdual.webservicevn.model.dao;
 
+import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.*;
 
 import java.sql.ResultSet;
@@ -10,6 +11,7 @@ import java.sql.SQLException;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@XmlRootElement
 
 public class Usuario {
   private Integer id;

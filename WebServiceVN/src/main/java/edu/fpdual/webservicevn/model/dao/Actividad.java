@@ -1,5 +1,6 @@
 package edu.fpdual.webservicevn.model.dao;
 
+import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.*;
 
 import java.sql.ResultSet;
@@ -12,23 +13,25 @@ import java.sql.SQLException;
 @EqualsAndHashCode
 @ToString
 @Builder
+@XmlRootElement
 
 public class Actividad {
 
   private int id;
+  private int idcat;
+  private int idciu;
   private String nom;
-  private int idEmp;
-  private int idSub;
+  private int idemp;
   private String horario;
-  private int idCiu;
+  private String info;
 
   public Actividad(ResultSet result) throws SQLException {
     setId(result.getInt("IDact"));
+    setIdcat(result.getInt("IDcat"));
+    setIdciu(result.getInt("IDciu"));
     setNom(result.getString("NomAct"));
-    setIdEmp(result.getInt("IDemp"));
-    setIdSub(result.getInt("IDsub"));
+    setIdemp(result.getInt("IDemp"));
     setHorario(result.getString("Horario"));
-    setIdCiu(result.getInt("IDciu"));
+    setInfo(result.getString("Info"));
   }
-
 }

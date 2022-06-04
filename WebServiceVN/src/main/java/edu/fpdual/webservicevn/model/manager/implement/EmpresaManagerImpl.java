@@ -64,7 +64,7 @@ public class EmpresaManagerImpl implements EmpresaManager {
   }
 
   @Override
-  public int crear(Connection con, Empresa empresa) {
+  public boolean crear(Connection con, Empresa empresa) {
     //prepare SQL statement
     String sql = "INSERT INTO empresa (NomEmp) values (?)";
 
@@ -75,16 +75,16 @@ public class EmpresaManagerImpl implements EmpresaManager {
       // Queries the DB
       int affectedRows = ps.executeUpdate();
       if (affectedRows <= 0) {
-        return 0;
+        return false;
       }
       ResultSet resultSet = ps.getGeneratedKeys();
       resultSet.beforeFirst();
       resultSet.next();
-      return resultSet.getInt(1);
+      return true;
 
     } catch (SQLException e) {
       e.printStackTrace();
-      return 0;
+      return false;
     }
   }
 

@@ -67,4 +67,11 @@ public class Connector {
         prop.getProperty(Constants.USE_LEGACY_DATE_TIME_CODE) + ("&serverTimezone=") +
         prop.getProperty(Constants.SERVER_TIMEZONE);
   }
+
+  public void desconectar() throws SQLException, ClassNotFoundException {
+    if (getConnection() != null && !getConnection().isClosed()) {
+      getConnection().close();
+    }
+  }
+
 }

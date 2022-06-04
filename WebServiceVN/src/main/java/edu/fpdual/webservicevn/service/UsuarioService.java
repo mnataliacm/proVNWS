@@ -9,9 +9,6 @@ import java.sql.SQLException;
 import java.util.Set;
 
 public class UsuarioService {
-
-
-
   private final UsuarioManagerImpl usuarioManager;
   public UsuarioService(UsuarioManagerImpl usuarioManager) {
     this.usuarioManager = usuarioManager;
@@ -21,29 +18,39 @@ public class UsuarioService {
       return usuarioManager.todos(con);
     }
   }
+
   public Usuario buscaId(Integer id) throws SQLException, ClassNotFoundException {
     try (Connection con = new Connector().getConnection()) {
       return usuarioManager.buscaID(con, id);
     }
   }
-  public boolean comparaEmail(String email) throws SQLException, ClassNotFoundException {
-    try (Connection con = new Connector().getConnection()) {
-      return usuarioManager.comparaEmail(con, email);
-    }
-  }
+
   public boolean borrarUsuario(Integer id) throws SQLException, ClassNotFoundException {
-    try (Connection con =new Connector().getConnection()) {
+    try (Connection con = new Connector().getConnection()) {
       return usuarioManager.borrar(con, id);
     }
   }
-  public Integer nuevoUsuario(Usuario usuario) throws SQLException, ClassNotFoundException {
+
+  public boolean nuevoUsuario(String nom, String ape, String pass, String email, String movil, int ciu) throws SQLException, ClassNotFoundException {
     try (Connection con = new Connector().getConnection()) {
-      if (usuarioManager.comparaEmail(con, usuario.getEmail())) {
+      boolean crea = nuevoUsuario(nom, ape, pass, email, movil, ciu);
+      Usuario usuario = new Usuario();
+      usuario.getNom();
+      usuario.getApe();
+      usuario.getPass();
+      usuario.getEmail();
+      usuario.getMovil();
+
+      if (crea) {
         usuarioManager.crear(con, usuario);
+        return true;
+
+      } else {
+        return false;
       }
-      return usuarioManager.crear(con, usuario);
     }
   }
+
   public boolean modificarUsuario(Usuario usuario) throws SQLException, ClassNotFoundException {
     try (Connection con = new Connector().getConnection()) {
       return usuarioManager.modificar(con, usuario);
@@ -51,5 +58,7 @@ public class UsuarioService {
   }
 
 
-
+  public int nuevoUsuario(Usuario usuario) {
+    return 0;
+  }
 }

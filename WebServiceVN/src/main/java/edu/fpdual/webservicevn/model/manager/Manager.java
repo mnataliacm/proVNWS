@@ -30,7 +30,7 @@ public interface Manager<T, U> {
    * @param entity The entity to create
    * @return a {@link int}
    */
-  int crear(Connection con, T entity);
+  boolean crear(Connection con, T entity);
 
   /**
    * Modificar una entidad
