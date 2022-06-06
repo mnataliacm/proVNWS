@@ -23,7 +23,7 @@
 hs_err_pid*
 
 #mios
-.idea
+.idea/
 *.iml
 target/
-out/get/
+out/

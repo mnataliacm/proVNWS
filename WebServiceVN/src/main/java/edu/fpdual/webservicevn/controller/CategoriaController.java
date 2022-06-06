@@ -11,8 +11,6 @@ import java.sql.SQLException;
 
 @Path("/categoria")
 public class CategoriaController {
-  Categoria categoria = new Categoria();
-
   private final CategoriaService categoriaService;
 
   public CategoriaController() {

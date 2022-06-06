@@ -1,85 +1,103 @@
 package edu.fpdual.webservicevn.model.manager.implement;
 
+import edu.fpdual.webservicevn.model.dao.Actividad;
 import edu.fpdual.webservicevn.model.manager.ActividadManager;
 
 import java.sql.*;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ActividadManagerImpl implements ActividadManager {
-
-  public ResultSet TodasActividades(Connection con) {
+@Override
+  public Set<Actividad> todos(Connection con) {
     try (Statement s = con.createStatement()) {
       ResultSet resultSet = s.executeQuery("SELECT * FROM actividad ");
-      return resultSet;
+      Set<Actividad> actividadSet = new HashSet<>();
+      resultSet.getRow();
+      while (resultSet.next()) {
+        Actividad actividad = new Actividad(resultSet);
+        actividadSet.add(actividad);
+      }
+      return actividadSet;
     } catch (SQLException e) {
       e.printStackTrace();
       return null;
     }
   }
 
-  public boolean NuevaActividad(Connection con, String nom, int idemp, int idsub, String horario, int idciu) throws SQLException {
-    try (PreparedStatement ps = (PreparedStatement) con.createStatement()) {
-    ResultSet resultSet = ps.executeQuery("INSERT INTO actividad (NomAct, IDemp, IDsub, Horario, IDciu) VALUES ("
-        + " NomAct = ?"
-        + ", IDemp = ?"
-        + ", IDsub = ?"
-        + ", Horario = ?"
-        + ", IDciu = ?)");
-    ps.setString(1, nom);
-    ps.setInt(2, idemp);
-    ps.setInt(3, idsub);
-    ps.setString(4, horario);
-    ps.setInt(5, idciu);
-    return resultSet.rowUpdated();
-  } catch (SQLException e) {
-    e.printStackTrace();
-    return false;
-  }
-}
-
-  public boolean ModificaActividad(Connection con, String nom, int idemp, int idsub, String horario, int idciu, int idact) throws SQLException {
-    try (PreparedStatement ps = (PreparedStatement) con.createStatement()) {
-      ResultSet resultSet = ps.executeQuery("UPDATE actividad SET "
-          + "NomAct = ?"
-          + ", IDemp = ?"
-          + ", IDsub = ?"
-          + ", Horario = ?"
-          + ", IDciu = ?"
-          + " WHERE IDact = ?");
-      ps.setString(1, nom);
-      ps.setInt(2, idemp);
-      ps.setInt(3, idsub);
-      ps.setString(4, horario);
-      ps.setInt(5, idciu);
-      ps.setInt(6, idact);
-      return resultSet.rowUpdated();
+  @Override
+  public boolean borrar(Connection con, Integer id) {
+    //prepare SQL statement
+    String sql = "DELETE FROM actividad WHERE IDact = ?";
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
+      ps.setInt(1, id);
+      return ps.executeUpdate() > 0;
     } catch (SQLException e) {
       e.printStackTrace();
       return false;
     }
   }
 
-  public boolean BorraActividad(Connection con, int idact) {
-    try (PreparedStatement ps = (PreparedStatement) con.createStatement()) {
-      ResultSet resultSet = ps.executeQuery("DELETE FROM actividad WHERE IDact = ?");
-      ps.setInt(1, idact);
-      return resultSet.rowDeleted();
+  @Override
+  public int crear(Connection con, Actividad actividad) {
+    String sql = "INSERT INTO actividad (IDcat, IDciu, NomAct, IDemp, Horario, Info) values (?, ?, ?, ?, ?, ?)";
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
+      ps.setInt(1, actividad.getIdcat());
+      ps.setInt(2, actividad.getIdciu());
+      ps.setString(3, actividad.getNom());
+      ps.setInt(4, actividad.getIdemp());
+      ps.setString(5, actividad.getHorario());
+      ps.setString(6, actividad.getInfo());
+      int affectedRows = ps.executeUpdate();
+      if(affectedRows<=0){
+        return 0;
+      }
+      ResultSet resultSet = ps.getGeneratedKeys();
+      resultSet.getRow();
+      resultSet.next();
+      return resultSet.getInt(1);
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return 0;
+    }
+  }
+  @Override
+  public boolean modificar(Connection con, Actividad actividad) {
+    String sql = "UPDATE actividad SET IDcat=?, IDciu=?, NomAct=? , IDemp=? , Horario=?, Info=? WHERE IDact = ?";
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
+      ps.setInt(1, actividad.getIdcat());
+      ps.setInt(2, actividad.getIdciu());
+      ps.setString(3, actividad.getNom());
+      ps.setInt(4, actividad.getIdemp());
+      ps.setString(5, actividad.getHorario());
+      ps.setString(6, actividad.getInfo());
+      ps.setInt(7, actividad.getId());
+      return ps.executeUpdate() > 0;
     } catch (SQLException e) {
       e.printStackTrace();
       return false;
     }
   }
 
-  public List ActividadesPorCiudad(Connection con, int idciu) {
-
-    try (PreparedStatement ps = (PreparedStatement) con.createStatement()) {
-      List<String> actividades = (List<String>) ps.executeQuery("SELECT * FROM actividad WHERE IDciu = ? GROUP BY NomAct");
+  public Set<Actividad> ActividadesPorCiudad(Connection con, Integer idciu) {
+    String sql = "SELECT * FROM actividad WHERE IDciu = ? GROUP BY NomAct";
+    Set<Actividad> actividadSet = new HashSet<>();
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
       ps.setInt(1, idciu);
-      return actividades;
+      ResultSet resultSet = ps.executeQuery();
+      resultSet.getRow();
+      while (resultSet.next()) {
+        Actividad actividad = new Actividad(resultSet);
+        actividadSet.add(actividad);
+      }
+      return actividadSet;
     } catch (SQLException e) {
       e.printStackTrace();
       return null;
     }
   }
-
+  @Override
+  public Actividad buscaID(Connection con, Integer id) {
+    return null;
+  }
 }

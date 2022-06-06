@@ -14,21 +14,21 @@ import java.sql.SQLException;
 @Builder
 
 public class Actividad {
-
-  private int id;
+  private Integer id;
+  private Integer idcat;
+  private Integer idciu;
   private String nom;
-  private int idEmp;
-  private int idSub;
+  private Integer idemp;
   private String horario;
-  private int idCiu;
+  private String info;
 
   public Actividad(ResultSet result) throws SQLException {
-    setId(result.getInt("IDact"));
-    setNom(result.getString("NomAct"));
-    setIdEmp(result.getInt("IDemp"));
-    setIdSub(result.getInt("IDsub"));
-    setHorario(result.getString("Horario"));
-    setIdCiu(result.getInt("IDciu"));
+    this.id = result.getInt("IDact");
+    this.idcat = result.getInt("IDcat");
+    this.idciu = result.getInt("IDciu");
+    this.nom = result.getString("NomAct");
+    this.idemp = result.getInt("IDemp");
+    this.horario = result.getString("Horario");
+    this.info = result.getString("Info");
   }
-
 }

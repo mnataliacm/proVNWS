@@ -11,7 +11,6 @@ import java.sql.SQLException;
 
 @Path("/usuario")
 public class UsuarioController {
-  Usuario usuario = new Usuario();
   private final UsuarioService usuarioService;
 
   public UsuarioController(){

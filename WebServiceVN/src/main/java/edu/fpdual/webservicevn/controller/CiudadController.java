@@ -1,7 +1,6 @@
 package edu.fpdual.webservicevn.controller;
 
 import edu.fpdual.webservicevn.model.dao.Ciudad;
-import edu.fpdual.webservicevn.model.dao.Usuario;
 import edu.fpdual.webservicevn.model.manager.implement.CiudadManagerImpl;
 import edu.fpdual.webservicevn.service.CiudadService;
 import jakarta.ws.rs.*;
@@ -12,7 +11,6 @@ import java.sql.SQLException;
 
 @Path("/ciudad")
 public class CiudadController {
-  Ciudad ciudad = new Ciudad();
   private final CiudadService ciudadService;
 
   public CiudadController() {
