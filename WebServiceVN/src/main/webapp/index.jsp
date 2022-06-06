@@ -13,7 +13,7 @@
 <h3>MENU</h3>
 <h6>----------------------------------------------------------</h6>
 <p><a href="api/usuario">Todos los usuarios</a></p>
-<p><a href="api/myresource">Jersey resource</a></p>
+<p><a href="api/usuario/4">Usuario por id</a></p>
 <p><a href="api/myresource">Jersey resource</a></p>
 <h6>----------------------------------------------------------</h6>
 <p><a href="api/empresas">Todas las empresas</a></p>

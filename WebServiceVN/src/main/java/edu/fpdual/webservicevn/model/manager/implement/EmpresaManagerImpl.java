@@ -28,7 +28,7 @@ public class EmpresaManagerImpl implements EmpresaManager {
   }
 
   @Override
-  public Empresa buscaID(Connection con, Integer id) throws SQLException {
+  public Empresa buscaID(Connection con, Integer id) {
     String sql = "SELECT * FROM empresa WHERE IDemp = ?";
     try (PreparedStatement ps = con.prepareStatement(sql)) {
       ps.setInt(1, id);

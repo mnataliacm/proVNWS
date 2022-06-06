@@ -14,6 +14,7 @@ public class UsuarioService {
   public UsuarioService(UsuarioManagerImpl usuarioManager) {
     this.usuarioManager = usuarioManager;
   }
+
   public Set<Usuario> todosUsuarios() throws SQLException, ClassNotFoundException {
     try (Connection con = new Connector().getConnection()) {
       return usuarioManager.todos(con);
@@ -39,7 +40,4 @@ public class UsuarioService {
       return usuarioManager.modificar(con, usuario);
     }
   }
-
-
-
 }

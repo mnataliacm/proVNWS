@@ -1,5 +1,6 @@
 package edu.fpdual.webservicevn;
 
+import edu.fpdual.webservicevn.controller.UsuarioController;
 import edu.fpdual.webservicevn.model.connector.Connector;
 
 import java.sql.Connection;
@@ -13,6 +14,10 @@ public class Main {
     Connection con = connector.getConnection();
     System.out.println(con.getCatalog());
 
+    System.out.println(new UsuarioController().todosUsuarios().getLength());
+    System.out.println(new UsuarioController().todosUsuarios());
+    System.out.println(new UsuarioController().buscaID(Integer.valueOf(3)));
+    
 
 
   }

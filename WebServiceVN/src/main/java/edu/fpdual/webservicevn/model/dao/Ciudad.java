@@ -14,12 +14,11 @@ import java.sql.SQLException;
 @Builder
 
 public class Ciudad {
-
-  private int id;
+  private Integer id;
   private String nom;
 
-  public Ciudad(ResultSet result) throws SQLException {
-    setId(result.getInt("IDciu"));
-    setNom(result.getString("NomCiu"));
+  public Ciudad(ResultSet resultSet) throws SQLException {
+    this.id = resultSet.getInt("IDciu");
+    this.nom = resultSet.getString("NomCiu");
   }
 }

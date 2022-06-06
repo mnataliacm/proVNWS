@@ -1,7 +1,6 @@
 package edu.fpdual.webservicevn.model.manager;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.Set;
 
 public interface Manager<T, U> {
@@ -48,7 +47,7 @@ public interface Manager<T, U> {
    * @param id Entities id to search for.
    * @return a {@link T}
    */
-  T buscaID(Connection con, U id) throws ClassNotFoundException, SQLException;
+  T buscaID(Connection con, U id);
 
 }
 

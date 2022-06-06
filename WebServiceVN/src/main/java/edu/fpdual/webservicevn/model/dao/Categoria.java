@@ -14,15 +14,13 @@ import java.sql.SQLException;
 @Builder
 
 public class Categoria {
-
-  private int id;
+  private Integer id;
   private String nom;
   private String imagen;
 
   public Categoria(ResultSet result) throws SQLException {
-    setId(result.getInt("IDcat"));
-    setNom(result.getString("NomCat"));
-    setImagen(result.getString("Imagen"));
+    this.id = result.getInt("IDcat");
+    this.nom = result.getString("NomCat");
+    this.imagen = result.getString("Imagen");
   }
-
 }

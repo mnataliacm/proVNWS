@@ -14,7 +14,7 @@ public class UsuarioController {
   Usuario usuario = new Usuario();
   private final UsuarioService usuarioService;
 
-  public UsuarioController (){
+  public UsuarioController(){
     this.usuarioService = new UsuarioService(new UsuarioManagerImpl());
   }
 
@@ -34,7 +34,7 @@ public class UsuarioController {
   @POST
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response createUsuario(Usuario usuario) throws SQLException, ClassNotFoundException {
+  public Response crearUsuario(Usuario usuario) throws SQLException, ClassNotFoundException {
     usuarioService.nuevoUsuario(usuario);
     return Response.status(201).build();
   }
