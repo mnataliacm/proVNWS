@@ -28,12 +28,12 @@ public class UsuarioManagerImpl implements UsuarioManager {
   }
 
   @Override
-  public Usuario buscaID(Connection con, Integer id) throws SQLException {
+  public Usuario buscaID(Connection con, Integer id) {
     String sql = "SELECT * FROM usuario WHERE IDusu = ?";
     try (PreparedStatement ps = con.prepareStatement(sql)) {
       ps.setInt(1, id);
       ResultSet resultSet = ps.executeQuery();
-      resultSet.beforeFirst();
+      resultSet.getRow();
       Usuario usuario = null;
       while (resultSet.next()) {
         usuario = new Usuario(resultSet);
@@ -74,8 +74,8 @@ public class UsuarioManagerImpl implements UsuarioManager {
       ps.setString(1, usuario.getNom());
       ps.setString(2, usuario.getApe());
       ps.setString(3, usuario.getPass());
-      ps.setString(3, usuario.getEmail());
-      ps.setString(3, usuario.getMovil());
+      ps.setString(4, usuario.getEmail());
+      ps.setString(5, usuario.getMovil());
       // Queries the DB
       int affectedRows = ps.executeUpdate();
       if(affectedRows<=0){

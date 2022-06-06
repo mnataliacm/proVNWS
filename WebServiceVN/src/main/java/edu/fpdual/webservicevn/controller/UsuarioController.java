@@ -18,27 +18,41 @@ public class UsuarioController {
     this.usuarioService = new UsuarioService(new UsuarioManagerImpl());
   }
 
-
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   public Response todosUsuarios() throws SQLException, ClassNotFoundException {
     return Response.ok().entity(usuarioService.todosUsuarios()).build();
   }
 
+  @GET
+  @Path("/{id}")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response buscaID(@PathParam("id") Integer id) throws SQLException, ClassNotFoundException {
+    return Response.ok().entity(usuarioService.buscaId(id)).build();
+  }
+
   @POST
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response createCity(Usuario usuario){
-    try {
-      int createdId = usuarioService.nuevoUsuario(usuario);
-      if(createdId > 0){
-        return Response.status(201).entity(usuarioService.buscaId(createdId)).build();
-      } else {
-        return Response.status(500).entity("Internal Error During Creating The City").build();
-      }
-    } catch (SQLException | ClassNotFoundException e) {
-      return Response.status(500).entity("Internal Error During DB Interaction").build();
-    }
+  public Response createUsuario(Usuario usuario) throws SQLException, ClassNotFoundException {
+    usuarioService.nuevoUsuario(usuario);
+    return Response.status(201).build();
   }
 
+  @PUT
+  @Produces(MediaType.APPLICATION_JSON)
+  @Consumes(MediaType.APPLICATION_JSON)
+  public Response actualizaUsuario(Usuario usuario) throws SQLException, ClassNotFoundException {
+    usuarioService.modificarUsuario(usuario);
+    return Response.ok().build();
+  }
+
+  @DELETE
+  @Path("/{id}")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response borrar(@PathParam("id") Integer id) throws SQLException, ClassNotFoundException {
+    Usuario usuario = usuarioService.buscaId(id);
+   usuarioService.borrarUsuario(id);
+    return Response.ok().entity(usuario).build();
+  }
 }

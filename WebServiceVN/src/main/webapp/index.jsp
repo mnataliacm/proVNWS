@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>VayaplaN</title>
+    <title>WebServiceVN</title>
     <link rel="shortcut icon" href="images/favicon2.ico" type="image/x-icon">
 </head>
 <body>
@@ -27,11 +27,6 @@
 <p><a href="api/myresource">Jersey resource</a></p>
 <p><a href="api/myresource">Jersey resource</a></p>
 <p></p>
-
 <h6>***********************************************************************</h6>
-    <h2>Jersey RESTful Web Application!</h2>
-    <p><a href="api/myresource">Jersey resource</a>
-    <p>Visit <a href="https://jersey.java.net">Project Jersey website</a>
-    for more information on Jersey!
 </body>
 </html>
