@@ -1,7 +1,6 @@
 package edu.fpdual.webservicevn.model.manager.implement;
 
 import edu.fpdual.webservicevn.model.dao.Categoria;
-import edu.fpdual.webservicevn.model.dao.Usuario;
 import edu.fpdual.webservicevn.model.manager.CategoriaManager;
 
 import java.sql.*;

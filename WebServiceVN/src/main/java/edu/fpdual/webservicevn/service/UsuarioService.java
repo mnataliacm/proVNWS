@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.util.Set;
 
 public class UsuarioService {
-
   private final UsuarioManagerImpl usuarioManager;
   public UsuarioService(UsuarioManagerImpl usuarioManager) {
     this.usuarioManager = usuarioManager;
