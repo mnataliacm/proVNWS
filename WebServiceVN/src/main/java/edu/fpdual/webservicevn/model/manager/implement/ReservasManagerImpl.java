@@ -10,7 +10,7 @@ import java.sql.Statement;
 
 public class ReservasManagerImpl implements ReservasManager {
 
-    public ResultSet TodosReserva(Connection con) throws SQLException {
+    public ResultSet todosReserva(Connection con) throws SQLException {
         try (Statement s = con.createStatement()) {
             ResultSet result = s.executeQuery("SELECT * FROM reserva ");
             return result;

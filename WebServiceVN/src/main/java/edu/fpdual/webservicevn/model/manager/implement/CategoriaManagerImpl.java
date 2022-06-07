@@ -25,19 +25,27 @@ public class CategoriaManagerImpl implements CategoriaManager {
   }
 }
 @Override
-  public ResultSet CatConAct(Connection con, int id) {
-    /*try (PreparedStatement ps = (PreparedStatement) con.createStatement()) {
-      ResultSet result = ps.executeQuery("SELECT DISTINCT(NomCat), COUNT(a.NomAct) AS total FROM categoria c"
-          + " INNER JOIN subcategoria s ON c.IDcat = s.IDcat"
-          + " INNER JOIN actividad a ON s.IDsub = a.IDsub"
-          + " INNER JOIN ciudad ci ON a.IDciu = ci.IDciu"
-          + " WHERE a.IDciu = ?");
+  public Set<Categoria> catConAct(Connection con, int id) {
+  Set<Categoria> categoriaSet = new HashSet<>();
+  String sql = "SELECT DISTINCT(c.NomCat), c.Imagen FROM categoria c"
+      + " INNER JOIN actividad a ON c.IDcat = a.IDcat"
+      + " INNER JOIN ciudad ci ON a.IDciu = ci.IDciu"
+      + " WHERE a.IDciu = ?"
+      + " AND a.IDcat = c.IDcat"
+      + " GROUP BY IDcat, IDciu";
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
       ps.setInt(1, id);
-      return result;
+      ResultSet resultSet = ps.executeQuery();
+      resultSet.getRow();
+      while (resultSet.next()) {
+        Categoria categoria = new Categoria(resultSet);
+        categoriaSet.add(categoria);
+      }
+      return categoriaSet;
     } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }*/
-    return null;
+      e.printStackTrace();
+      return null;
+    }
   }
   @Override
   public boolean borrar(Connection con, Integer id) {

@@ -4,4 +4,5 @@ import edu.fpdual.webservicevn.model.dao.Usuario;
 
 public interface UsuarioManager extends Manager<Usuario, Integer> {
 
+
 }

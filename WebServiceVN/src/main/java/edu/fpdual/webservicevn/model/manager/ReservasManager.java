@@ -10,5 +10,5 @@ public interface ReservasManager {
      * @param con conexión a BBDD
      * @return {@code Set} of {@code Usuario}
      */
-    public ResultSet TodosReserva(Connection con) throws SQLException;
+    public ResultSet todosReserva(Connection con) throws SQLException;
 }

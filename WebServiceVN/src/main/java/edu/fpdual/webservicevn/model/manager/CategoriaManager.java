@@ -1,11 +1,10 @@
 package edu.fpdual.webservicevn.model.manager;
 
 import edu.fpdual.webservicevn.model.dao.Categoria;
-import edu.fpdual.webservicevn.model.dao.Usuario;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Set;
 
 public interface CategoriaManager  extends Manager<Categoria, Integer> {
 
@@ -15,6 +14,6 @@ public interface CategoriaManager  extends Manager<Categoria, Integer> {
    * @param con conexión a BBDD
    * @return {@code Set} of {@code Categorias}
    */
-  public ResultSet CatConAct(Connection con, int id) throws SQLException;
+  public Set<Categoria> catConAct(Connection con, int id) throws SQLException;
 }
 

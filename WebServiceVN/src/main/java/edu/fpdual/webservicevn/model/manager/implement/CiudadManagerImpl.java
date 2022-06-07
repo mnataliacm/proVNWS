@@ -1,7 +1,6 @@
 package edu.fpdual.webservicevn.model.manager.implement;
 
 import edu.fpdual.webservicevn.model.dao.Ciudad;
-import edu.fpdual.webservicevn.model.dao.Usuario;
 import edu.fpdual.webservicevn.model.manager.CiudadManager;
 
 import java.sql.*;
@@ -28,7 +27,7 @@ public class CiudadManagerImpl implements CiudadManager {
   }
 @Override
   public Ciudad buscaID(Connection con, Integer id) {
-    String sql = "SELECT NomCiu FROM ciudad WHERE IDciu = ?";
+    String sql = "SELECT * FROM ciudad WHERE IDciu = ?";
     try (PreparedStatement ps = con.prepareStatement(sql)) {
       ps.setInt(1, id);
       ResultSet resultSet = ps.executeQuery();
@@ -84,6 +83,17 @@ public class CiudadManagerImpl implements CiudadManager {
     } catch (SQLException e) {
       e.printStackTrace();
       return false;
+    }
+  }
+
+  public String nombreCiudad(Connection con, Integer id) {
+    String sql = "SELECT NomCiu FROM ciudad WHERE IDciu = ?";
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
+      ps.setInt(1, id);
+      return ps.executeQuery().getString("NomCiu");
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return null;
     }
   }
 }
