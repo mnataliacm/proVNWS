@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class CiudadManagerImpl implements CiudadManager {
 
-@Override
+  @Override
   public Set<Ciudad> todos(Connection con) {
     try (Statement s = con.createStatement()) {
       ResultSet resultSet = s.executeQuery("SELECT * FROM ciudad ");
@@ -25,7 +25,8 @@ public class CiudadManagerImpl implements CiudadManager {
       return null;
     }
   }
-@Override
+
+  @Override
   public Ciudad buscaID(Connection con, Integer id) {
     String sql = "SELECT * FROM ciudad WHERE IDciu = ?";
     try (PreparedStatement ps = con.prepareStatement(sql)) {
@@ -58,7 +59,7 @@ public class CiudadManagerImpl implements CiudadManager {
       ps.setInt(1, ciudad.getId());
       ps.setString(2, ciudad.getNom());
       int affectedRows = ps.executeUpdate();
-      if(affectedRows<=0){
+      if (affectedRows <= 0) {
         return 0;
       }
       ResultSet resultSet = ps.getGeneratedKeys();
@@ -70,6 +71,7 @@ public class CiudadManagerImpl implements CiudadManager {
       return 0;
     }
   }
+
   @Override
   public boolean modificar(Connection con, Ciudad ciudad) {
     //prepare SQL statement

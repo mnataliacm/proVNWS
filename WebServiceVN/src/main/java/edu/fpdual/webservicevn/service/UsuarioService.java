@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Set;
 
+// TODO: 08/06/2022 preguntar a Mariano si no se quita lo del void
 public class UsuarioService {
   private final UsuarioManagerImpl usuarioManager;
   public UsuarioService(UsuarioManagerImpl usuarioManager) {

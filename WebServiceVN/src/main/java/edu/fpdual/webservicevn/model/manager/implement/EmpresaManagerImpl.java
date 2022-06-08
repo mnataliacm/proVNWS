@@ -1,6 +1,5 @@
 package edu.fpdual.webservicevn.model.manager.implement;
 
-
 import edu.fpdual.webservicevn.model.dao.Empresa;
 import edu.fpdual.webservicevn.model.manager.EmpresaManager;
 
@@ -8,6 +7,7 @@ import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
 
+// TODO: 08/06/2022 Pendiente de revisar
 public class EmpresaManagerImpl implements EmpresaManager {
 
   @Override

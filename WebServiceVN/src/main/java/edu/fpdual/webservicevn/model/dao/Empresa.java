@@ -14,14 +14,15 @@ import java.sql.SQLException;
 @Builder
 
 public class Empresa {
-    private int id;
-    private String nom;
-    public Empresa(ResultSet resultSet) {
-        try {
-            this.id = resultSet.getInt("IDemp");
-            this.nom = resultSet.getString("NomEmp");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+  private int id;
+  private String nom;
+
+  public Empresa(ResultSet resultSet) {
+    try {
+      this.id = resultSet.getInt("IDemp");
+      this.nom = resultSet.getString("NomEmp");
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
+  }
 }

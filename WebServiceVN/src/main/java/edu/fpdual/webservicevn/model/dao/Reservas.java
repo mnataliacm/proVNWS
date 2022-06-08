@@ -27,5 +27,4 @@ public class Reservas {
         setFecha(result.getDate("Fecha"));
         setHora(result.getString("Hora"));
     }
-
 }
