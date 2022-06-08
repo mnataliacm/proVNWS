@@ -35,7 +35,7 @@ public class UsuarioController {
   @Consumes(MediaType.APPLICATION_JSON)
   public Response crearUsuario(Usuario usuario) throws SQLException, ClassNotFoundException {
     usuarioService.nuevoUsuario(usuario);
-    return Response.status(201).build();
+    return Response.status(201).entity(usuario).build();
   }
 
   @PUT
@@ -43,7 +43,7 @@ public class UsuarioController {
   @Consumes(MediaType.APPLICATION_JSON)
   public Response actualizaUsuario(Usuario usuario) throws SQLException, ClassNotFoundException {
     usuarioService.modificarUsuario(usuario);
-    return Response.ok().build();
+    return Response.ok().entity(usuario).build();
   }
 
   @DELETE

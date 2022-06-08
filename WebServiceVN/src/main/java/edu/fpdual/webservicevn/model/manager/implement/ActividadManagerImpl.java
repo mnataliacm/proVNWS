@@ -1,6 +1,7 @@
 package edu.fpdual.webservicevn.model.manager.implement;
 
 import edu.fpdual.webservicevn.model.dao.Actividad;
+import edu.fpdual.webservicevn.model.dao.Usuario;
 import edu.fpdual.webservicevn.model.manager.ActividadManager;
 
 import java.sql.*;
@@ -8,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ActividadManagerImpl implements ActividadManager {
-@Override
+  @Override
   public Set<Actividad> todos(Connection con) {
     try (Statement s = con.createStatement()) {
       ResultSet resultSet = s.executeQuery("SELECT * FROM actividad ");
@@ -19,6 +20,20 @@ public class ActividadManagerImpl implements ActividadManager {
         actividadSet.add(actividad);
       }
       return actividadSet;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  @Override
+  public Actividad buscaID(Connection con, Integer id) {
+    String sql = "SELECT * FROM actividad WHERE IDact = ?";
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
+      ps.setInt(1, id);
+      ResultSet resultSet = ps.executeQuery();
+      resultSet.next();
+      return new Actividad(resultSet);
     } catch (SQLException e) {
       e.printStackTrace();
       return null;
@@ -49,7 +64,7 @@ public class ActividadManagerImpl implements ActividadManager {
       ps.setString(5, actividad.getHorario());
       ps.setString(6, actividad.getInfo());
       int affectedRows = ps.executeUpdate();
-      if(affectedRows<=0){
+      if (affectedRows <= 0) {
         return 0;
       }
       ResultSet resultSet = ps.getGeneratedKeys();
@@ -61,6 +76,7 @@ public class ActividadManagerImpl implements ActividadManager {
       return 0;
     }
   }
+
   @Override
   public boolean modificar(Connection con, Actividad actividad) {
     String sql = "UPDATE actividad SET IDcat=?, IDciu=?, NomAct=? , IDemp=? , Horario=?, Info=? WHERE IDact = ?";
@@ -95,9 +111,5 @@ public class ActividadManagerImpl implements ActividadManager {
       e.printStackTrace();
       return null;
     }
-  }
-  @Override
-  public Actividad buscaID(Connection con, Integer id) {
-    return null;
   }
 }

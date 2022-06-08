@@ -31,7 +31,7 @@ public class CiudadManagerImpl implements CiudadManager {
     try (PreparedStatement ps = con.prepareStatement(sql)) {
       ps.setInt(1, id);
       ResultSet resultSet = ps.executeQuery();
-      resultSet.getRow();
+      resultSet.next();
       return new Ciudad(resultSet);
     } catch (SQLException e) {
       e.printStackTrace();
@@ -90,7 +90,7 @@ public class CiudadManagerImpl implements CiudadManager {
     String sql = "SELECT NomCiu FROM ciudad WHERE IDciu = ?";
     try (PreparedStatement ps = con.prepareStatement(sql)) {
       ps.setInt(1, id);
-      return ps.executeQuery().getString("NomCiu");
+      return String.valueOf(ps.executeQuery());
     } catch (SQLException e) {
       e.printStackTrace();
       return null;

@@ -8,31 +8,45 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class CategoriaManagerImpl implements CategoriaManager {
-@Override
+  @Override
   public Set<Categoria> todos(Connection con) {
-   try (Statement s = con.createStatement()) {
-    ResultSet resultSet = s.executeQuery("SELECT * FROM categoria ");
-    Set<Categoria> categoriaSet = new HashSet<>();
-    resultSet.getRow();
-    while (resultSet.next()) {
-      Categoria categoria = new Categoria(resultSet);
-      categoriaSet.add(categoria);
+    try (Statement s = con.createStatement()) {
+      ResultSet resultSet = s.executeQuery("SELECT * FROM categoria ");
+      Set<Categoria> categoriaSet = new HashSet<>();
+      resultSet.getRow();
+      while (resultSet.next()) {
+        Categoria categoria = new Categoria(resultSet);
+        categoriaSet.add(categoria);
+      }
+      return categoriaSet;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return null;
     }
-    return categoriaSet;
-  } catch (SQLException e) {
-    e.printStackTrace();
-    return null;
   }
-}
-@Override
+
+  @Override
+  public Categoria buscaID(Connection con, Integer id) {
+    String sql = "SELECT * FROM categoria WHERE IDcat = ?";
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
+      ps.setInt(1, id);
+      ResultSet resultSet = ps.executeQuery();
+      resultSet.next();
+      return new Categoria(resultSet);
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  @Override
   public Set<Categoria> catConAct(Connection con, int id) {
-  Set<Categoria> categoriaSet = new HashSet<>();
-  String sql = "SELECT DISTINCT(c.NomCat), c.Imagen FROM categoria c"
-      + " INNER JOIN actividad a ON c.IDcat = a.IDcat"
-      + " INNER JOIN ciudad ci ON a.IDciu = ci.IDciu"
-      + " WHERE a.IDciu = ?"
-      + " AND a.IDcat = c.IDcat"
-      + " GROUP BY IDcat, IDciu";
+    Set<Categoria> categoriaSet = new HashSet<>();
+    String sql = "SELECT DISTINCT(c.NomCat), c.Imagen, c.IDcat FROM categoria c"
+        + " INNER JOIN actividad a ON c.IDcat = a.IDcat"
+        + " INNER JOIN ciudad ci ON a.IDciu = ci.IDciu"
+        + " WHERE a.IDciu = ?"
+        + " AND a.IDcat = c.IDcat";
     try (PreparedStatement ps = con.prepareStatement(sql)) {
       ps.setInt(1, id);
       ResultSet resultSet = ps.executeQuery();
@@ -47,6 +61,7 @@ public class CategoriaManagerImpl implements CategoriaManager {
       return null;
     }
   }
+
   @Override
   public boolean borrar(Connection con, Integer id) {
     //prepare SQL statement
@@ -59,6 +74,7 @@ public class CategoriaManagerImpl implements CategoriaManager {
       return false;
     }
   }
+
   @Override
   public int crear(Connection con, Categoria categoria) {
     String sql = "INSERT INTO categoria (NomCat, Imagen) values (?, ?)";
@@ -66,7 +82,7 @@ public class CategoriaManagerImpl implements CategoriaManager {
       ps.setString(1, categoria.getNom());
       ps.setString(2, categoria.getImagen());
       int affectedRows = ps.executeUpdate();
-      if(affectedRows<=0){
+      if (affectedRows <= 0) {
         return 0;
       }
       ResultSet resultSet = ps.getGeneratedKeys();
@@ -78,6 +94,7 @@ public class CategoriaManagerImpl implements CategoriaManager {
       return 0;
     }
   }
+
   @Override
   public boolean modificar(Connection con, Categoria categoria) {
     String sql = "UPDATE categoria SET NomCat=?, Imagen=? WHERE IDcat = ?";
@@ -92,8 +109,4 @@ public class CategoriaManagerImpl implements CategoriaManager {
     }
   }
 
-  @Override
-  public Categoria buscaID(Connection con, Integer id) {
-    return null;
-  }
 }

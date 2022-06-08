@@ -40,4 +40,10 @@ public class CategoriaService {
       return categoriaManager.modificar(con, categoria);
     }
   }
+
+  public Set<Categoria> catConAct(Integer id) throws SQLException, ClassNotFoundException {
+    try (Connection con =new Connector().getConnection()) {
+      return categoriaManager.catConAct(con, id);
+    }
+  }
 }

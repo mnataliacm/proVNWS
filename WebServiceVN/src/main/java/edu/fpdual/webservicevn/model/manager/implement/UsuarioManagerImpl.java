@@ -32,7 +32,7 @@ public class UsuarioManagerImpl implements UsuarioManager {
     try (PreparedStatement ps = con.prepareStatement(sql)) {
       ps.setInt(1, id);
       ResultSet resultSet = ps.executeQuery();
-      resultSet.getRow();
+      resultSet.next();
       return new Usuario(resultSet);
     } catch (SQLException e) {
       e.printStackTrace();
@@ -62,7 +62,7 @@ public class UsuarioManagerImpl implements UsuarioManager {
       ps.setString(3, usuario.getPass());
       ps.setString(4, usuario.getEmail());
       ps.setString(5, usuario.getMovil());
-      ps.setInt(6, usuario.getCiudad());
+      ps.setInt(6, usuario.getIdciu());
       int affectedRows = ps.executeUpdate();
       if(affectedRows<=0){
         return 0;
@@ -85,7 +85,7 @@ public class UsuarioManagerImpl implements UsuarioManager {
       ps.setString(3, usuario.getPass());
       ps.setString(4, usuario.getEmail());
       ps.setString(5, usuario.getMovil());
-      ps.setInt(6, usuario.getCiudad());
+      ps.setInt(6, usuario.getIdciu());
       ps.setInt(7, usuario.getId());
       return ps.executeUpdate() > 0;
     } catch (SQLException e) {

@@ -23,10 +23,10 @@ public class CiudadService {
     }
   }
 
-  public String nombreCiudad(Integer id) throws SQLException, ClassNotFoundException {
+  public Ciudad buscaID(Integer id) throws SQLException, ClassNotFoundException {
     try (Connection con = new Connector().getConnection()) {
       Ciudad ciudad = ciudadManager.buscaID(con, id);
-      return ciudad.getNom();
+      return ciudad;
     }
   }
   public boolean borrarCiudad(Integer id) throws SQLException, ClassNotFoundException {

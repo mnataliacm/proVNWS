@@ -14,6 +14,6 @@ public interface CategoriaManager  extends Manager<Categoria, Integer> {
    * @param con conexión a BBDD
    * @return {@code Set} of {@code Categorias}
    */
-  public Set<Categoria> catConAct(Connection con, int id) throws SQLException;
+  Set<Categoria> catConAct(Connection con, int id) throws SQLException;
 }
 

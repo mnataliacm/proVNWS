@@ -30,12 +30,19 @@ public class CategoriaController {
     return Response.ok().entity(categoriaService.buscaId(id)).build();
   }
 
+  @GET
+  @Path("/grupo/{id}")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response catConAct(@PathParam("id") Integer id) throws SQLException, ClassNotFoundException {
+    return Response.ok().entity(categoriaService.catConAct(id)).build();
+  }
+
   @POST
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
   public Response crearCategoria(Categoria categoria) throws SQLException, ClassNotFoundException {
     categoriaService.nuevaCategoria(categoria);
-    return Response.status(201).build();
+    return Response.status(201).entity(categoria).build();
   }
 
   @PUT
@@ -43,14 +50,16 @@ public class CategoriaController {
   @Consumes(MediaType.APPLICATION_JSON)
   public Response actualizaCategoria(Categoria categoria) throws SQLException, ClassNotFoundException {
     categoriaService.modificarCategoria(categoria);
-    return Response.ok().build();
+    return Response.ok().entity(categoria).build();
   }
 
   @DELETE
   @Path("/{id}")
   @Produces(MediaType.APPLICATION_JSON)
   public Response borrar(@PathParam("id") Integer id) throws SQLException, ClassNotFoundException {
+    Categoria categoria = categoriaService.buscaId(id);
     categoriaService.borrarCategoria(id);
-    return Response.ok().build();
+    return Response.ok().entity(categoria).build();
   }
+
 }

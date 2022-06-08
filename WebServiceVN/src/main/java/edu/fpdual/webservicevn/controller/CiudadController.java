@@ -26,8 +26,8 @@ public class CiudadController {
   @GET
   @Path("/{id}")
   @Produces(MediaType.APPLICATION_JSON)
-  public Response buscaNombre(@PathParam("id") Integer id) throws SQLException, ClassNotFoundException {
-    return Response.ok().entity(ciudadService.nombreCiudad(id)).build();
+  public Response buscaID(@PathParam("id") Integer id) throws SQLException, ClassNotFoundException {
+    return Response.ok().entity(ciudadService.buscaID(id)).build();
   }
 
   @POST
@@ -35,7 +35,7 @@ public class CiudadController {
   @Consumes(MediaType.APPLICATION_JSON)
   public Response crearCiudad(Ciudad ciudad) throws SQLException, ClassNotFoundException {
     ciudadService.nuevaCiudad(ciudad);
-    return Response.status(201).build();
+    return Response.status(201).entity(ciudad).build();
   }
 
   @PUT
@@ -43,16 +43,16 @@ public class CiudadController {
   @Consumes(MediaType.APPLICATION_JSON)
   public Response actualizaUsuario(Ciudad ciudad) throws SQLException, ClassNotFoundException {
     ciudadService.modificarCiudad(ciudad);
-    return Response.ok().build();
+    return Response.ok().entity(ciudad).build();
   }
 
   @DELETE
   @Path("/{id}")
   @Produces(MediaType.APPLICATION_JSON)
   public Response borrar(@PathParam("id") Integer id) throws SQLException, ClassNotFoundException {
+    Ciudad ciudad = ciudadService.buscaID(id);
     ciudadService.borrarCiudad(id);
-    return Response.ok().build();
+    return Response.ok().entity(ciudad).build();
   }
-
 
 }

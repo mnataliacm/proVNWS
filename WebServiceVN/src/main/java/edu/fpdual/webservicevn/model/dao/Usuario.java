@@ -19,7 +19,7 @@ public class Usuario {
   private String pass;
   private String email;
   private String movil;
-  private Integer ciudad;
+  private Integer idciu;
 
   public Usuario(ResultSet resultSet) throws SQLException {
     this.id = resultSet.getInt("IDusu");
@@ -28,6 +28,6 @@ public class Usuario {
     this.pass = resultSet.getString("PassUsu");
     this.email = resultSet.getString("Email");
     this.movil = resultSet.getString("Movil");
-    this.ciudad = resultSet.getInt("IDciu");
+    this.idciu = resultSet.getInt("IDciu");
   }
 }

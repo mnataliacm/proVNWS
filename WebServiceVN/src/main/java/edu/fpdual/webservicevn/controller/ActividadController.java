@@ -35,7 +35,7 @@ public class ActividadController {
   @Consumes(MediaType.APPLICATION_JSON)
   public Response crearActividad(Actividad actividad) throws SQLException, ClassNotFoundException {
     actividadService.nuevaActividad(actividad);
-    return Response.status(201).build();
+    return Response.status(201).entity(actividad).build();
   }
 
   @PUT
@@ -43,14 +43,15 @@ public class ActividadController {
   @Consumes(MediaType.APPLICATION_JSON)
   public Response actualizaActividad(Actividad actividad) throws SQLException, ClassNotFoundException {
     actividadService.modificarActividad(actividad);
-    return Response.ok().build();
+    return Response.ok().entity(actividad).build();
   }
 
   @DELETE
   @Path("/{id}")
   @Produces(MediaType.APPLICATION_JSON)
   public Response borrar(@PathParam("id") Integer id) throws SQLException, ClassNotFoundException {
+    Actividad actividad = actividadService.buscaId(id);
     actividadService.borrarActividad(id);
-    return Response.ok().build();
+    return Response.ok().entity(actividad).build();
   }
 }
