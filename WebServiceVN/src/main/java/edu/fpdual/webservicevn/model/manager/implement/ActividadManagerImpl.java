@@ -41,7 +41,6 @@ public class ActividadManagerImpl implements ActividadManager {
 
   @Override
   public boolean borrar(Connection con, Integer id) {
-    //prepare SQL statement
     String sql = "DELETE FROM actividad WHERE IDact = ?";
     try (PreparedStatement ps = con.prepareStatement(sql)) {
       ps.setInt(1, id);
@@ -67,7 +66,6 @@ public class ActividadManagerImpl implements ActividadManager {
         return 0;
       }
       ResultSet resultSet = ps.getGeneratedKeys();
-      resultSet.getRow();
       resultSet.next();
       return resultSet.getInt(1);
     } catch (SQLException e) {
