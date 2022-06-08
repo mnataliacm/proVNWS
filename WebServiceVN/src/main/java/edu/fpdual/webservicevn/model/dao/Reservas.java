@@ -1,17 +1,21 @@
 package edu.fpdual.webservicevn.model.dao;
 
-import lombok.*;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 
-@Getter
-@Setter
-@NoArgsConstructor
+
+@Data
 @AllArgsConstructor
-@EqualsAndHashCode
-@ToString
+@NoArgsConstructor
+@XmlRootElement
 @Builder
 
 public class Reservas {
@@ -19,12 +23,12 @@ public class Reservas {
     private int idUsu;
     private int idAct;
     private Date fecha;
-    private String hora;
+    private Time hora;
 
     public Reservas(ResultSet result) throws SQLException {
         setIdUsu(result.getInt("IDusu"));
         setIdAct(result.getInt("IDact"));
         setFecha(result.getDate("Fecha"));
-        setHora(result.getString("Hora"));
+        setHora(result.getTime("Hora"));
     }
 }

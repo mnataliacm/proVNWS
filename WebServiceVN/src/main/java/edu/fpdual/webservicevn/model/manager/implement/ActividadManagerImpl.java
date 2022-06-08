@@ -55,7 +55,7 @@ public class ActividadManagerImpl implements ActividadManager {
   @Override
   public int crear(Connection con, Actividad actividad) {
     String sql = "INSERT INTO actividad (IDcat, IDciu, NomAct, IDemp, Horario, Info) values (?, ?, ?, ?, ?, ?)";
-    try (PreparedStatement ps = con.prepareStatement(sql)) {
+    try (PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
       ps.setInt(1, actividad.getIdcat());
       ps.setInt(2, actividad.getIdciu());
       ps.setString(3, actividad.getNom());

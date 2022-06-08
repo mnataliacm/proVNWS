@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `proyectovn`.`actividad` (
   `IDcat` INT NOT NULL,
   `IDciu` INT NOT NULL,
   `NomAct` VARCHAR(45) NOT NULL,
-  `IDemp` INT NULL,
+  `IDemp` INT NULL DEFAULT 1,
   `Horario` VARCHAR(150) NULL,
   `Info` VARCHAR(100) NULL,
   PRIMARY KEY (`IDact`),

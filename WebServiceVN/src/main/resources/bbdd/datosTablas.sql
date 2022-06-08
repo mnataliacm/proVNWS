@@ -1,5 +1,5 @@
 INSERT INTO ciudad values 
-(04, 'Almeria'),
+(4, 'Almeria'),
 (18, 'Granada'),
 (29, 'Málaga'),
 (11, 'Cádiz'),
@@ -23,11 +23,12 @@ INSERT INTO categoria values
 (6, 'Varios', '');
 
 INSERT INTO empresa values 
-(1, 'Alhambra'),
-(2, 'Aliatar'),
-(3, 'Alcazaba'),
-(4, 'Cervantes'),
-(5, 'EscapeRoom Solete');
+(1, 'Sin Empresa'),
+(2, 'Alhambra'),
+(3, 'Aliatar'),
+(4, 'Alcazaba'),
+(5, 'Cervantes'),
+(6, 'EscapeRoom Solete');
 
 SET FOREIGN_KEY_CHECKS = 0;
 INSERT INTO actividad VALUES

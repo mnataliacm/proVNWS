@@ -1,16 +1,19 @@
 package edu.fpdual.webservicevn.model.dao;
 
-import lombok.*;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@Setter
-@Getter
-@NoArgsConstructor
+
+@Data
 @AllArgsConstructor
-@EqualsAndHashCode
-@ToString
+@NoArgsConstructor
+@XmlRootElement
 @Builder
 
 public class Empresa {
