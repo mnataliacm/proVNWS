@@ -42,4 +42,10 @@ public class CiudadService {
       return ciudadManager.modificar(con, ciudad);
     }
   }
+
+  public Set<Ciudad> ciuConAct(Integer id) throws SQLException, ClassNotFoundException {
+    try (Connection con =new Connector().getConnection()) {
+      return ciudadManager.ciuConAct(con, id);
+    }
+  }
 }

@@ -30,6 +30,13 @@ public class CiudadController {
     return Response.ok().entity(ciudadService.buscaID(id)).build();
   }
 
+  @GET
+  @Path("/grupo/{id}")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response ciuConAct(@PathParam("id") Integer id) throws SQLException, ClassNotFoundException {
+    return Response.ok().entity(ciudadService.ciuConAct(id)).build();
+  }
+
   @POST
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
