@@ -64,7 +64,7 @@ public class UsuarioManagerImpl implements UsuarioManager {
       ps.setString(5, usuario.getMovil());
       ps.setInt(6, usuario.getIdciu());
       int affectedRows = ps.executeUpdate();
-      if(affectedRows<=0){
+      if (affectedRows <= 0) {
         return 0;
       }
       ResultSet resultSet = ps.getGeneratedKeys();
@@ -76,6 +76,7 @@ public class UsuarioManagerImpl implements UsuarioManager {
       return 0;
     }
   }
+
   @Override
   public boolean modificar(Connection con, Usuario usuario) {
     String sql = "UPDATE usuario SET NomUsu=?, ApeUsu=?, PassUsu=? , Email=? , Movil=?, IDciu=? WHERE IDusu = ?";
@@ -91,6 +92,19 @@ public class UsuarioManagerImpl implements UsuarioManager {
     } catch (SQLException e) {
       e.printStackTrace();
       return false;
+    }
+  }
+
+  public Usuario buscaNombre(Connection con, String nom) {
+    String sql = "SELECT * FROM usuario WHERE NomUsu LIKE ?";
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
+      ps.setString(1, nom);
+      ResultSet resultSet = ps.executeQuery();
+      resultSet.next();
+      return new Usuario(resultSet);
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return null;
     }
   }
 }

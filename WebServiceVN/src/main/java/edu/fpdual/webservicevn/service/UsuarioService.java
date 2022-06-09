@@ -40,4 +40,10 @@ public class UsuarioService {
       return usuarioManager.modificar(con, usuario);
     }
   }
+
+  public Usuario buscaNombre(String nom) throws SQLException, ClassNotFoundException {
+    try (Connection con = new Connector().getConnection()) {
+      return usuarioManager.buscaNombre(con, nom);
+    }
+  }
 }

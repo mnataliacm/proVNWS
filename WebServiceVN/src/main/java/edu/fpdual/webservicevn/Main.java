@@ -14,10 +14,11 @@ public class Main {
     Connection con = connector.getConnection();
     System.out.println(con.getCatalog());
 
-    System.out.println(new UsuarioController().todosUsuarios().getLength());
-    System.out.println(new UsuarioController().todosUsuarios());
-    System.out.println(new UsuarioController().buscaID(Integer.valueOf(3)));
-    
+    //System.out.println(new UsuarioController().todosUsuarios().getLength());
+   // System.out.println(new UsuarioController().todosUsuarios());
+    //System.out.println(new UsuarioController().buscaID(Integer.valueOf(3)));
+
+    System.out.println(new UsuarioController().buscaNombre("Admin"));
 
 
   }

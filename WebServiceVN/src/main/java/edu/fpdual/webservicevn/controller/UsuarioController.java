@@ -30,6 +30,14 @@ public class UsuarioController {
     return Response.ok().entity(usuarioService.buscaId(id)).build();
   }
 
+  @GET
+  @Path("/login/{nom}")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response buscaNombre(@PathParam("nom") String nombre) throws SQLException, ClassNotFoundException {
+    Usuario usuario = usuarioService.buscaNombre(nombre);
+    return Response.ok().entity(usuario).build();
+  }
+
   @POST
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
