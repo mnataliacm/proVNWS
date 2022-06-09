@@ -31,7 +31,7 @@ public class ActividadService {
       return actividadManager.borrar(con, id);
     }
   }
-  public int nuevaActividad(Actividad actividad) throws SQLException, ClassNotFoundException {
+  public int crearActividad(Actividad actividad) throws SQLException, ClassNotFoundException {
     try (Connection con = new Connector().getConnection()) {
       return actividadManager.crear(con, actividad);
     }
