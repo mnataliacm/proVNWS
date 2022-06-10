@@ -1,10 +1,13 @@
 package edu.fpdual.webservicevn;
 
-import edu.fpdual.webservicevn.controller.UsuarioController;
+import edu.fpdual.webservicevn.controller.CiudadController;
 import edu.fpdual.webservicevn.model.connector.Connector;
+import edu.fpdual.webservicevn.model.manager.implement.CiudadManagerImpl;
+import edu.fpdual.webservicevn.service.CiudadService;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.*;
 
 
 public class Main {
@@ -13,12 +16,6 @@ public class Main {
     Connector connector = new Connector();
     Connection con = connector.getConnection();
     System.out.println(con.getCatalog());
-
-    //System.out.println(new UsuarioController().todosUsuarios().getLength());
-   // System.out.println(new UsuarioController().todosUsuarios());
-    //System.out.println(new UsuarioController().buscaID(Integer.valueOf(3)));
-
-    System.out.println(new UsuarioController().buscaNombre("Admin"));
 
 
   }

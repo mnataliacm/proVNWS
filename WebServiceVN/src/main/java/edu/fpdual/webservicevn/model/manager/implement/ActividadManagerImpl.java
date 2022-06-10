@@ -92,11 +92,11 @@ public class ActividadManagerImpl implements ActividadManager {
     }
   }
 
-  public Set<Actividad> ActividadesPorCiudad(Connection con, Integer idciu) {
-    String sql = "SELECT * FROM actividad WHERE IDciu = ? GROUP BY NomAct";
+  public Set<Actividad> actPorCiu(Connection con, Integer id) {
+    String sql = "SELECT * FROM actividad WHERE IDciu = ?";
     Set<Actividad> actividadSet = new HashSet<>();
     try (PreparedStatement ps = con.prepareStatement(sql)) {
-      ps.setInt(1, idciu);
+      ps.setInt(1, id);
       ResultSet resultSet = ps.executeQuery();
       resultSet.getRow();
       while (resultSet.next()) {

@@ -46,7 +46,7 @@ public class CategoriaManagerImpl implements CategoriaManager {
         + " INNER JOIN actividad a ON c.IDcat = a.IDcat"
         + " INNER JOIN ciudad ci ON a.IDciu = ci.IDciu"
         + " WHERE a.IDciu = ?"
-        + " AND a.IDcat = c.IDcat";
+        + " GROUP BY c.NomCat";
     try (PreparedStatement ps = con.prepareStatement(sql)) {
       ps.setInt(1, id);
       ResultSet resultSet = ps.executeQuery();

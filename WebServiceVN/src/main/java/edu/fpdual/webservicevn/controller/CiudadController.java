@@ -8,6 +8,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 @Path("/ciudad")
 public class CiudadController {
@@ -30,13 +31,6 @@ public class CiudadController {
     return Response.ok().entity(ciudadService.buscaID(id)).build();
   }
 
-  @GET
-  @Path("/grupo/{id}")
-  @Produces(MediaType.APPLICATION_JSON)
-  public Response ciuConAct(@PathParam("id") Integer id) throws SQLException, ClassNotFoundException {
-    return Response.ok().entity(ciudadService.ciuConAct(id)).build();
-  }
-
   @POST
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
@@ -48,7 +42,7 @@ public class CiudadController {
   @PUT
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response actualizaUsuario(Ciudad ciudad) throws SQLException, ClassNotFoundException {
+  public Response actualizaCiudad(Ciudad ciudad) throws SQLException, ClassNotFoundException {
     ciudadService.modificarCiudad(ciudad);
     return Response.ok().entity(ciudad).build();
   }
