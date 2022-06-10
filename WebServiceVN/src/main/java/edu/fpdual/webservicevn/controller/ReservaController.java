@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 
 
-@Path("/empresa")
+@Path("/reserva")
 public class ReservaController {
     private final ReservaService reservaService;
 
@@ -55,11 +55,11 @@ public class ReservaController {
     }
 
     @DELETE
-    @Path("/{idEmp}")
+    @Path("/{idRes}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response borrar(@PathParam("idEmp") Integer idRes) throws SQLException, ClassNotFoundException {
-        Reservas empresa = reservaService.buscaID(idRes);
+    public Response borrar(@PathParam("idRes") Integer idRes) throws SQLException, ClassNotFoundException {
+        Reservas reservas = reservaService.buscaID(idRes);
         reservaService.borrarReserva(idRes);
-        return Response.ok().entity(empresa).build();
+        return Response.ok().entity(reservas).build();
     }
 }
