@@ -42,7 +42,7 @@ public class CategoriaManagerImpl implements CategoriaManager {
   @Override
   public Set<Categoria> catConAct(Connection con, int id) {
     Set<Categoria> categoriaSet = new HashSet<>();
-    String sql = "SELECT DISTINCT(c.NomCat), c.Imagen, c.IDcat FROM categoria c"
+    String sql = "SELECT DISTINCT(c.NomCat), * FROM categoria c"
         + " INNER JOIN actividad a ON c.IDcat = a.IDcat"
         + " INNER JOIN ciudad ci ON a.IDciu = ci.IDciu"
         + " WHERE a.IDciu = ?"

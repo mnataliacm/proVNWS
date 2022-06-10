@@ -88,11 +88,18 @@ public class CiudadManagerImpl implements CiudadManager {
     }
   }
 
-  public String nombreCiudad(Connection con, Integer id) {
-    String sql = "SELECT NomCiu FROM ciudad WHERE IDciu = ?";
+  public Set<Ciudad> ciuConAct(Connection con, Integer id) {
+    Set<Ciudad> ciudadSet = new HashSet<>();
+    String sql = "SELECT * FROM ciudad c INNER JOIN actividad a ON c.IDciu = a.IDciu WHERE a.IDciu = ?";
     try (PreparedStatement ps = con.prepareStatement(sql)) {
       ps.setInt(1, id);
-      return String.valueOf(ps.executeQuery());
+      ResultSet resultSet = ps.executeQuery();
+      resultSet.getRow();
+      while (resultSet.next()) {
+        Ciudad ciudad = new Ciudad(resultSet);
+        ciudadSet.add(ciudad);
+      }
+      return ciudadSet;
     } catch (SQLException e) {
       e.printStackTrace();
       return null;
