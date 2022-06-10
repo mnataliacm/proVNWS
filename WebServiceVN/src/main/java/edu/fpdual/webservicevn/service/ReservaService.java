@@ -1,9 +1,7 @@
 package edu.fpdual.webservicevn.service;
 
 import edu.fpdual.webservicevn.model.connector.Connector;
-import edu.fpdual.webservicevn.model.dao.Empresa;
 import edu.fpdual.webservicevn.model.dao.Reservas;
-import edu.fpdual.webservicevn.model.manager.implement.EmpresaManagerImpl;
 import edu.fpdual.webservicevn.model.manager.implement.ReservasManagerImpl;
 
 import java.sql.Connection;
@@ -21,9 +19,9 @@ public class ReservaService {
             return reservasManager.todos(con);
         }
     }
-    public Empresa buscaIDres(Integer idRes) throws SQLException, ClassNotFoundException {
+    public Reservas buscaID(Integer idRes) throws SQLException, ClassNotFoundException {
         try (Connection con = new Connector().getConnection()) {
-            return reservasManager.buscaIDres(con, idRes);
+            return reservasManager.buscaID(con, idRes);
         }
     }
 

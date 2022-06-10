@@ -1,10 +1,7 @@
 package edu.fpdual.webservicevn.controller;
 
-import edu.fpdual.webservicevn.model.dao.Empresa;
 import edu.fpdual.webservicevn.model.dao.Reservas;
-import edu.fpdual.webservicevn.model.manager.implement.EmpresaManagerImpl;
 import edu.fpdual.webservicevn.model.manager.implement.ReservasManagerImpl;
-import edu.fpdual.webservicevn.service.EmpresaService;
 import edu.fpdual.webservicevn.service.ReservaService;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -35,8 +32,8 @@ public class ReservaController {
     @GET
     @Path("/{idRes}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response buscaIDres(@PathParam("idRes") Integer idRes) throws SQLException, ClassNotFoundException {
-        return Response.ok().entity(reservaService.buscaIDres(idRes)).build();
+    public Response buscaIDres(@PathParam("idRes") Integer id) throws SQLException, ClassNotFoundException {
+        return Response.ok().entity(reservaService.buscaID(id)).build();
     }
 
 
@@ -61,7 +58,7 @@ public class ReservaController {
     @Path("/{idEmp}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response borrar(@PathParam("idEmp") Integer idRes) throws SQLException, ClassNotFoundException {
-        Empresa empresa = reservaService.buscaIDres(idRes);
+        Reservas empresa = reservaService.buscaID(idRes);
         reservaService.borrarReserva(idRes);
         return Response.ok().entity(empresa).build();
     }

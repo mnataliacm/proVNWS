@@ -21,7 +21,7 @@ public class EmpresaService {
             return empresaManager.todos(con);
         }
     }
-    public Empresa buscaIDemp(Integer idEmp) throws SQLException, ClassNotFoundException {
+    public Empresa buscaID(Integer idEmp) throws SQLException, ClassNotFoundException {
         try (Connection con = new Connector().getConnection()) {
             return empresaManager.buscaID(con, idEmp);
         }

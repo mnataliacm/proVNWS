@@ -30,8 +30,8 @@ import java.sql.SQLException;
         @GET
         @Path("/{idEmp}")
         @Produces(MediaType.APPLICATION_JSON)
-        public Response buscaIDemp(@PathParam("idEmp") Integer id) throws SQLException, ClassNotFoundException {
-            return Response.ok().entity(empresaService.buscaIDemp(id)).build();
+        public Response buscaID(@PathParam("idEmp") Integer id) throws SQLException, ClassNotFoundException {
+            return Response.ok().entity(empresaService.buscaID(id)).build();
         }
 
 
@@ -56,7 +56,7 @@ import java.sql.SQLException;
         @Path("/{idEmp}")
         @Produces(MediaType.APPLICATION_JSON)
         public Response borrar(@PathParam("idEmp") Integer idEmp) throws SQLException, ClassNotFoundException {
-            Empresa empresa = empresaService.buscaIDemp(idEmp);
+            Empresa empresa = empresaService.buscaID(idEmp);
             empresaService.borrarEmpresa(idEmp);
             return Response.ok().entity(empresa).build();
         }
