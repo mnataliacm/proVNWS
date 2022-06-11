@@ -17,8 +17,7 @@ public interface UsuarioManager extends Manager<Usuario, Integer> {
   /**
    * Envia email
    *
-   * @param con Conexión BD
-   * @param email Dirección de correo electrónico
+   * @param usuario Dirección de correo electrónico
    * @return a {@link Boolean}
    */
   boolean enviaEmailBienvenida(Usuario usuario);

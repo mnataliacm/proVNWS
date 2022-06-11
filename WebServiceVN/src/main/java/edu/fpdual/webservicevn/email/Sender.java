@@ -66,73 +66,6 @@ public class Sender {
       return false;
     }
   }
-    /**
-     * Send an email with from and recipient address, subject, d a simple HTML format content and an attached file.
-     * @param from from email address
-     * @param to recipient email address
-     * @param subject email subject
-     * @param text email content in html format
-     * @param content path where the temp file is located
-     * @return a {@link boolean} indicating if the email was sent or not.
-     */
-    public boolean send (String from, String to, String subject, String text, String content) throws
-    FileNotFoundException, IOException {
-      // Get the Session object.// and pass username and password
-      Session session = createSession();
-      try {
-        // Create a default MimeMessage object.
-        MimeMessage message = new MimeMessage(session);
-
-        // Set From: header field of the header.
-        message.setFrom(new InternetAddress(from));
-
-        // Set To: header field of the header.
-        message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-
-        // Set Subject: header field
-        message.setSubject(subject);
-
-        // Attach a file.
-        //First Part of the body: text
-        BodyPart texto = new MimeBodyPart();
-        texto.setContent(text, "text/html");
-
-        //Second Part of the body: project properties file.
-        File file = new File(content);
-
-        InputStream fileData = getClass().getClassLoader().getResourceAsStream("mail.properties");
-
-        try (FileOutputStream outputStream = new FileOutputStream(file, false)) {
-          int read;
-          byte[] bytes = new byte[8192];
-          while ((read = fileData.read(bytes)) != -1) {
-            outputStream.write(bytes, 0, read);
-          }
-        }
-
-        BodyPart fichero = new MimeBodyPart();
-        fichero.setDataHandler(new DataHandler(new FileDataSource(file)));
-        fichero.setFileName(file.getName());
-
-        //Group all part in a object
-        Multipart multiPart = new MimeMultipart();
-        multiPart.addBodyPart(texto);
-        multiPart.addBodyPart(fichero);
-
-        //Set Message Content
-        message.setContent(multiPart);
-
-        System.out.println("enviando...");
-        // Send message
-        Transport.send(message);
-        System.out.println("Mensaje enviado satisfactoriamente....");
-        return true;
-      } catch (MessagingException mex) {
-        mex.printStackTrace();
-        return false;
-      }
-
-    }
 
     private Session createSession () {
       Session session = Session.getInstance(mailProp, new javax.mail.Authenticator() {
@@ -144,14 +77,6 @@ public class Sender {
       // Used to debug SMTP issues
       session.setDebug(true);
       return session;
-    }
-
-    public static void main(String[] args) throws FileNotFoundException, IOException {
-
-      new Sender().send("muloxa@gmail.com", "mnacamu@gmail.com", "Hola =D ;)",
-          "<b>Asi se envian correos con Java...<b>","d:\\zRecursos\\pom_completo.xml");
-        /*new Sender().send("muloxa@gmail.com", "mnacamu@gmail.com", "Hola =D",
-                "<b>Asi se envian correos con Java...<b>");*/
     }
   }
 
