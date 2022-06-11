@@ -30,13 +30,6 @@ public class ActividadController {
     return Response.ok().entity(actividadService.buscaId(id)).build();
   }
 
-  @GET
-  @Path("/grupo/{id}")
-  @Produces(MediaType.APPLICATION_JSON)
-  public Response actPorCiu(@PathParam("id") Integer id) throws SQLException, ClassNotFoundException {
-    return Response.ok().entity(actividadService.actPorCiu(id)).build();
-  }
-
   @POST
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)

@@ -4,6 +4,7 @@ import edu.fpdual.webservicevn.model.connector.Connector;
 import edu.fpdual.webservicevn.model.dao.Usuario;
 import edu.fpdual.webservicevn.model.manager.implement.UsuarioManagerImpl;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Set;
@@ -45,5 +46,9 @@ public class UsuarioService {
     try (Connection con = new Connector().getConnection()) {
       return usuarioManager.buscaNombre(con, nom);
     }
+  }
+
+  public boolean enviaEmailBienvenida(Usuario usuario) {
+      return usuarioManager.enviaEmailBienvenida(usuario);
   }
 }

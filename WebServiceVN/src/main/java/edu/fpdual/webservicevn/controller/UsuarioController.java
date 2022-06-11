@@ -62,4 +62,12 @@ public class UsuarioController {
    usuarioService.borrarUsuario(id);
     return Response.ok().entity(usuario).build();
   }
+
+  @GET
+  @Path("/email/{id}")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response mensajeBienvenida(@PathParam("id") Integer id) throws SQLException, ClassNotFoundException {
+    usuarioService.enviaEmailBienvenida(usuarioService.buscaId(id));
+    return Response.status(201).build();
+  }
 }

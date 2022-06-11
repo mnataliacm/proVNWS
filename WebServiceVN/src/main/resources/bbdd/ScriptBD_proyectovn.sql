@@ -109,6 +109,7 @@ CREATE TABLE IF NOT EXISTS `proyectovn`.`actividad` (
   INDEX `fk_categoria_has_ciudad_ciudad1_idx` (`IDciu` ASC),
   INDEX `fk_categoria_has_ciudad_categoria1_idx` (`IDcat` ASC),
   INDEX `fk_actividad_empresa1_idx` (`IDemp` ASC),
+  UNIQUE INDEX `Email_UNIQUE` (`Email` ASC),
   CONSTRAINT `fk_categoria_has_ciudad_categoria1`
     FOREIGN KEY (`IDcat`)
     REFERENCES `proyectovn`.`categoria` (`IDcat`)

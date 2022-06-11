@@ -1,8 +1,10 @@
 package edu.fpdual.webservicevn.model.manager.implement;
 
+import edu.fpdual.webservicevn.email.Sender;
 import edu.fpdual.webservicevn.model.dao.Usuario;
 import edu.fpdual.webservicevn.model.manager.UsuarioManager;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -105,6 +107,26 @@ public class UsuarioManagerImpl implements UsuarioManager {
     } catch (SQLException e) {
       e.printStackTrace();
       return null;
+    }
+  }
+
+  public boolean enviaEmailBienvenida(Usuario usuario) {
+    try {
+      new Sender().send("muloxa@gmail.com", "" + usuario.getEmail() + "", "Bienvenid@ a ¡Vaya plaN!;)",
+          "Hola <b>" + usuario.getNom() + "</b>,<br><br>" +
+              "<b>Bienvenid@<b> a nuestra comunidad.<br><br>" +
+              "Su registro se ha realizado correctamente:<br>" +
+              "Nombre Completo:<b> " + usuario.getNom() + " " + usuario.getApe() + "</b><br>" +
+              "Email:<b> " + usuario.getEmail() + "</b><br>" +
+              "Móvil:<b> " + usuario.getMovil() + "</b><br>" +
+              "Ciudad elegida:<b> " + usuario.getIdciu() + "</b><br>" +
+              "Descubre todo lo que puedes hacer en tu tiempo libre, acude al teatro, aprende surf o busca un grupo para pasar la tarde en una batalla de paintball.<br><br><br>" +
+              "<b>El equipo de VN<b><br>"
+              ,"d:\\zRecursos\\bienvenido.pdf");
+      return true;
+    } catch (IOException e) {
+      e.printStackTrace();
+      return false;
     }
   }
 }
