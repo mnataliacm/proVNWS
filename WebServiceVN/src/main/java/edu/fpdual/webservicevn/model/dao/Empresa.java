@@ -18,12 +18,12 @@ import java.sql.SQLException;
 
 public class Empresa {
   private int id;
-  private String nom;
+  private String nomEmp;
 
   public Empresa(ResultSet resultSet) {
     try {
       this.id = resultSet.getInt("IDemp");
-      this.nom = resultSet.getString("NomEmp");
+      this.nomEmp = resultSet.getString("NomEmp");
     } catch (SQLException e) {
       e.printStackTrace();
     }

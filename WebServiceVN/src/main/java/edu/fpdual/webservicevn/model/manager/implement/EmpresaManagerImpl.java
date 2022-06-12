@@ -71,7 +71,7 @@ public class EmpresaManagerImpl implements EmpresaManager {
     // Create general statement
     try (PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
       //Add Parameters
-      ps.setString(1, empresa.getNom());
+      ps.setString(1, empresa.getNomEmp());
       // Queries the DB
       int affectedRows = ps.executeUpdate();
       if (affectedRows <= 0) {
@@ -96,7 +96,7 @@ public class EmpresaManagerImpl implements EmpresaManager {
     // Create general statement
     try (PreparedStatement ps = con.prepareStatement(sql)) {
       //Add Parameters
-      ps.setString(1, empresa.getNom());
+      ps.setString(1, empresa.getNomEmp());
       ps.setInt(2, empresa.getId());
       // Queries the DB
       return ps.executeUpdate() > 0;

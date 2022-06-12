@@ -16,7 +16,7 @@ public class EmpresaService {
         this.empresaManager = empresaManager;
     }
 
-    public Set<Empresa> todosEmpresa() throws SQLException, ClassNotFoundException {
+    public Set<Empresa> todasEmpresa() throws SQLException, ClassNotFoundException {
         try (Connection con = new Connector().getConnection()) {
             return empresaManager.todos(con);
         }
@@ -31,7 +31,7 @@ public class EmpresaService {
             return empresaManager.borrar(con, idEmp);
         }
     }
-    public int nuevaEmpresa(Empresa empresa) throws SQLException, ClassNotFoundException {
+    public int crearEmpresa(Empresa empresa) throws SQLException, ClassNotFoundException {
         try (Connection con = new Connector().getConnection()) {
             return empresaManager.crear(con, empresa);
         }
@@ -41,6 +41,7 @@ public class EmpresaService {
             return empresaManager.modificar(con, empresa);
         }
     }
+
 
 
 }

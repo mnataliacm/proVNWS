@@ -1,7 +1,9 @@
 package edu.fpdual.webservicevn.service;
 
 import edu.fpdual.webservicevn.model.connector.Connector;
+import edu.fpdual.webservicevn.model.dao.Actividad;
 import edu.fpdual.webservicevn.model.dao.Reservas;
+import edu.fpdual.webservicevn.model.manager.implement.ActividadManagerImpl;
 import edu.fpdual.webservicevn.model.manager.implement.ReservasManagerImpl;
 
 import java.sql.Connection;
@@ -10,6 +12,7 @@ import java.util.Set;
 
 public class ReservaService {
     private final ReservasManagerImpl reservasManager;
+
     public ReservaService(ReservasManagerImpl reservasManager) {
         this.reservasManager = reservasManager;
     }
@@ -19,25 +22,39 @@ public class ReservaService {
             return reservasManager.todos(con);
         }
     }
-    public Reservas buscaID(Integer idRes) throws SQLException, ClassNotFoundException {
+
+
+    public Reservas buscaID(Integer id) throws SQLException, ClassNotFoundException {
         try (Connection con = new Connector().getConnection()) {
-            return reservasManager.buscaID(con, idRes);
+            return reservasManager.buscaID(con, id);
         }
     }
 
-    public boolean borrarReserva(Integer idRes) throws SQLException, ClassNotFoundException {
-        try (Connection con =new Connector().getConnection()) {
-            return reservasManager.borrar(con, idRes);
+
+    public boolean borrarReserva(Integer id) throws SQLException, ClassNotFoundException {
+        try (Connection con = new Connector().getConnection()) {
+            return reservasManager.borrar(con, id);
         }
     }
-    public int nuevaReserva(Reservas reservas) throws SQLException, ClassNotFoundException {
+
+
+    public int crearReserva(Reservas reservas) throws SQLException, ClassNotFoundException {
         try (Connection con = new Connector().getConnection()) {
             return reservasManager.crear(con, reservas);
         }
     }
+
     public boolean modificarReserva(Reservas reservas) throws SQLException, ClassNotFoundException {
-        try (Connection con =new Connector().getConnection()) {
+        try (Connection con = new Connector().getConnection()) {
             return reservasManager.modificar(con, reservas);
         }
     }
 }
+
+
+
+
+
+
+
+

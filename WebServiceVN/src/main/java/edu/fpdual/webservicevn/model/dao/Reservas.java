@@ -19,16 +19,22 @@ import java.sql.Time;
 @Builder
 
 public class Reservas {
-
+    private int idRes;
     private int idUsu;
     private int idAct;
     private Date fecha;
     private Time hora;
 
     public Reservas(ResultSet result) throws SQLException {
-        setIdUsu(result.getInt("IDusu"));
-        setIdAct(result.getInt("IDact"));
-        setFecha(result.getDate("Fecha"));
-        setHora(result.getTime("Hora"));
+        try {
+            this.idRes = result.getInt("IDres");
+            this.idUsu = result.getInt("IDusu");
+            this.idAct = result.getInt("IDact");
+            this.fecha = result.getDate("Fecha");
+            this.hora = result.getTime("Hora");
+        }catch(SQLException e){
+                e.printStackTrace();
+            }
+
     }
 }
