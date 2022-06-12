@@ -33,7 +33,7 @@ public class EmpresaManagerImpl implements EmpresaManager {
     try (PreparedStatement ps = con.prepareStatement(sql)) {
       ps.setInt(1, id);
       ResultSet resultSet = ps.executeQuery();
-      resultSet.beforeFirst();
+      resultSet.getRow();
       Empresa empresa = null;
       while (resultSet.next()) {
         empresa = new Empresa(resultSet);
