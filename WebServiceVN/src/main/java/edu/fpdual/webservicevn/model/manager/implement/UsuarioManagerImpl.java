@@ -4,7 +4,6 @@ import edu.fpdual.webservicevn.email.Sender;
 import edu.fpdual.webservicevn.model.dao.Usuario;
 import edu.fpdual.webservicevn.model.manager.UsuarioManager;
 
-import java.io.IOException;
 import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
