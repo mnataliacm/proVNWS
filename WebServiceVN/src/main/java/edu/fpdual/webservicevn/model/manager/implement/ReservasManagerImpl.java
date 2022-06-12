@@ -55,7 +55,7 @@ public class ReservasManagerImpl implements ReservasManager {
 
   @Override
   public int crear(Connection con, Reservas reservas) {
-    String sql = "INSERT INTO resrva (IDusu, IDact, Fecha, Hora) values (?, ?, ?, ?)";
+    String sql = "INSERT INTO reserva (IDusu, IDact, Fecha, Hora) values (?, ?, ?, ?)";
     try (PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
       ps.setInt(1, reservas.getIdUsu());
       ps.setInt(2, reservas.getIdAct());
