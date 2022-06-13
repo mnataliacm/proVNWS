@@ -28,10 +28,9 @@
 <p><a href="api/empresa">Todas las empresas</a></p>
 <p><a href="api/empresa/2">Empresa por id</a></p>
 <h6>----------------------------------------------------------</h6>
-<p><a href="api/reservas">Todas las reservas</a></p>
-<p><a href="api/reservas/2">Reserva por id</a></p>
-<p><a href="api/reservas/user/3">Reservas por usuario</a></p>
-<p><a href="api/myresource">Jersey resource</a></p>
+<p><a href="api/reserva">Todas las reservas</a></p>
+<p><a href="api/reserva/2">Reserva por id</a></p>
+<p><a href="api/reserva/user/3">Reservas por usuario</a></p>
 <p></p>
 <h6>***********************************************************************</h6>
 </body>

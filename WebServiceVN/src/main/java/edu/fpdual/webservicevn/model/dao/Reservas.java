@@ -37,4 +37,7 @@ public class Reservas {
             }
 
     }
+
+    public Reservas(int idRes, int idUsu, int idAct, int i, int i1) {
+    }
 }
