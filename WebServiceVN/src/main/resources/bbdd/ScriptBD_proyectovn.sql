@@ -45,6 +45,8 @@ CREATE TABLE IF NOT EXISTS `proyectovn`.`usuario` (
   `IDciu` INT NULL,
   PRIMARY KEY (`IDusu`),
   INDEX `fk_usuario_ciudad1_idx` (`IDciu` ASC),
+  UNIQUE INDEX `Nombre_UNIQUE` (`NomUsu` ASC),
+  UNIQUE INDEX `Email_UNIQUE` (`Email` ASC),
   CONSTRAINT `fk_usuario_ciudad1`
     FOREIGN KEY (`IDciu`)
     REFERENCES `proyectovn`.`ciudad` (`IDciu`)
@@ -109,7 +111,6 @@ CREATE TABLE IF NOT EXISTS `proyectovn`.`actividad` (
   INDEX `fk_categoria_has_ciudad_ciudad1_idx` (`IDciu` ASC),
   INDEX `fk_categoria_has_ciudad_categoria1_idx` (`IDcat` ASC),
   INDEX `fk_actividad_empresa1_idx` (`IDemp` ASC),
-  UNIQUE INDEX `Email_UNIQUE` (`Email` ASC),
   CONSTRAINT `fk_categoria_has_ciudad_categoria1`
     FOREIGN KEY (`IDcat`)
     REFERENCES `proyectovn`.`categoria` (`IDcat`)

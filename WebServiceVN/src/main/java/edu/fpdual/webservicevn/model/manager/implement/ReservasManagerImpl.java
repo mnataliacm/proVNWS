@@ -1,8 +1,6 @@
 package edu.fpdual.webservicevn.model.manager.implement;
 
-import edu.fpdual.webservicevn.model.dao.Actividad;
 import edu.fpdual.webservicevn.model.dao.Reservas;
-import edu.fpdual.webservicevn.model.manager.ActividadManager;
 import edu.fpdual.webservicevn.model.manager.ReservasManager;
 
 import java.sql.*;
@@ -90,23 +88,6 @@ public class ReservasManagerImpl implements ReservasManager {
     }
   }
 
-  public Set<Reservas> actPorCiu(Connection con, Integer id) {
-    String sql = "SELECT * FROM reserva WHERE IDciu = ?";
-    Set<Reservas> reservasSet = new HashSet<>();
-    try (PreparedStatement ps = con.prepareStatement(sql)) {
-      ps.setInt(1, id);
-      ResultSet resultSet = ps.executeQuery();
-      resultSet.getRow();
-      while (resultSet.next()) {
-        Reservas reservas = new Reservas(resultSet);
-        reservasSet.add(reservas);
-      }
-      return reservasSet;
-    } catch (SQLException e) {
-      e.printStackTrace();
-      return null;
-    }
-  }
 }
 
 
